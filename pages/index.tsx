@@ -22,35 +22,31 @@ export default function Home() {
       .catch((error) => {
         setError(error);
       });
+
+    //listen chainId change
+    onChainIdChange((chainId) => {
+      setChainId(chainId);
+    });
   }, []);
 
   const handleConnectMetamask = useCallback(() => {
     connectMetamask()
       .then((account) => {
         setAccount(account);
-
-        //listen chainId change
-        onChainIdChange((chainId) => {
-          setChainId(chainId);
-        });
       })
       .catch((err) => {
         setError(err);
       });
   }, []);
 
-  const handleDisconnectMetamask = useCallback(() => {}, []);
-
   const networkInfo = useMemo(() => {
-    if (chainId >= 0) {
-      const chain = (chainList as any)[chainId];
-      if (chain) {
-        return (
-          <h5>
-            ChainId: {chainId}, ChainName: {chain.chainName}
-          </h5>
-        );
-      }
+    const chain = (chainList as any)[chainId];
+    if (chain) {
+      return (
+        <h5>
+          ChainId: {chainId}, ChainName: {chain.chainName}
+        </h5>
+      );
     }
   }, [chainId]);
 
@@ -67,12 +63,12 @@ export default function Home() {
       );
     } else {
       return (
-        <button className={styles.btn} onClick={handleDisconnectMetamask}>
-          <span>Disconnect wallet</span>
+        <button className={styles.btn}>
+          <span>Wallet connected</span>
         </button>
       );
     }
-  }, [account, handleConnectMetamask, handleDisconnectMetamask]);
+  }, [account, handleConnectMetamask]);
 
   return (
     <div className={styles.container}>
