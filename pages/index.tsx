@@ -59,7 +59,7 @@ export default function Home() {
       return;
     }
 
-    if (account) {
+    if (!account) {
       return (
         <button className={styles.btn} onClick={handleConnectMetamask}>
           <span>Connect wallet</span>
