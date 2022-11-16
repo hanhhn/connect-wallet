@@ -47,7 +47,7 @@ export default function Home() {
       if (chain) {
         return (
           <h5>
-            ChainId: {chainId}, ChainName: {chain.ChainName}
+            ChainId: {chainId}, ChainName: {chain.chainName}
           </h5>
         );
       }

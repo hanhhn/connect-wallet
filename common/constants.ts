@@ -17,6 +17,18 @@ const chainList = {
     rpc: "  https://rpc.ankr.com/eth_rinkeby",
     explorer: "https://rinkeby.etherscan.io",
   },
+  137: {
+    chainId: 137,
+    chainName: "Polygon Mainnet",
+    rpc: "https://polygon-rpc.com",
+    explorer: "https://polygonscan.com",
+  },
+  56: {
+    chainId: 56,
+    chainName: "BSC Mainnet",
+    rpc: "https://bsc-dataseed1.binance.org",
+    explorer: "https://bscscan.com",
+  },
 };
 
 export default chainList;
