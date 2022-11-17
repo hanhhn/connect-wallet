@@ -4,6 +4,7 @@ import chainList from "../common/constants";
 import {
   alreadyConnected,
   connectMetamask,
+  getChainId,
   getProvider,
   onChainIdChange,
 } from "../libs/web3";
@@ -23,10 +24,19 @@ export default function Home() {
         setError(error);
       });
 
+    getChainId()
+      .then((chainId) => {
+        setChainId(chainId);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+
     //listen chainId change
     onChainIdChange((chainId) => {
       setChainId(chainId);
     });
+
   }, []);
 
   const handleConnectMetamask = useCallback(() => {
