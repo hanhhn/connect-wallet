@@ -71,7 +71,15 @@ export const onChainIdChange = (callback: (chainId: number) => void) => {
   }
 };
 
-export const getChainId = () => {
-  const web3 = new Web3(getProvider());
-  return web3.eth.getChainId().then((chainId) => Number(chainId));
+export const getChainId = (): Promise<number> => {
+  const provider = getProvider();
+  if (provider) {
+    const web3 = new Web3(getProvider());
+    return web3.eth
+      .getChainId()
+      .then((chainId) => Promise.resolve(Number(chainId)))
+      .catch((err) => Promise.reject(err));
+  }
+
+  return Promise.reject("Please install metamask");
 };
